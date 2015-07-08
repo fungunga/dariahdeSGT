@@ -1,201 +1,212 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
   <head>
-    <meta charset="utf-8">
     <title>DARIAH-DE Datasheet Editor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Ubbo Veentjer, SUB Göttingen">
-    <meta name="description" content="DARIAH-DE Datasheet Editor">
-
-    <link rel="stylesheet" href="./resources/css/bootstrap.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="./resources/css/bootstrap-responsive.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="./resources/css/application.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="./resources/css/bootstrap-customization.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="./resources/css/bootstrap-modal.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="./resources/css/font-awesome.css">
-
-    <link rel="stylesheet" media="screen" href="https://geobrowser.de.dariah.eu/edit/components/handsontable/lib/jQuery-contextMenu/jquery.contextMenu.css">
-    <link rel="stylesheet" media="screen" href="https://geobrowser.de.dariah.eu/edit/components/handsontable/jquery.handsontable.css">
-    <link rel="stylesheet" media="screen" href="https://geobrowser.de.dariah.eu/edit/css/dariah.workflow.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Ubbo Veentjer, SUB Göttingen" />
+    <meta name="description" content="DARIAH-DE Datasheet Editor" />
+    
+    <link rel="stylesheet" href="./resources/css/bootstrap.css"
+	  type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="./resources/css/bootstrap-responsive.css"
+	  type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="./resources/css/application.css"
+	  type="text/css" media="screen, projection" />
+    <link rel="stylesheet"
+	  href="./resources/css/bootstrap-customization.css" type="text/css"
+	  media="screen, projection" />
+    <link rel="stylesheet" href="./resources/css/bootstrap-modal.css"
+	  type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="./resources/css/font-awesome.css" />
+    <link rel="stylesheet" media="screen"
+	  href="https://geobrowser.de.dariah.eu/edit/components/handsontable/lib/jQuery-contextMenu/jquery.contextMenu.css" />
+    <link rel="stylesheet" media="screen"
+	  href="https://geobrowser.de.dariah.eu/edit/components/handsontable/jquery.handsontable.css" />
+    <link rel="stylesheet" media="screen"
+	  href="https://geobrowser.de.dariah.eu/edit/css/dariah.workflow.css" />
     
     <!-- JavaScript files at the end for faster loading of documents -->
-    
     <script type="text/javascript" src="./resources/js/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="./resources/js/bootstrap.js"></script>
-
-    <link href="http://geobrowser.de.dariah.eu/beta5/PLATIN/css/platin.css" rel="stylesheet" type="text/css">
-    <script src="http://geobrowser.de.dariah.eu/beta5/PLATIN/lib/jquery/jquery.min.js"></script>
-    <script src="http://geobrowser.de.dariah.eu/beta5/PLATIN/platin-min.js"></script>
+    
+    <link href="http://geobrowser.de.dariah.eu/beta5/PLATIN/css/platin.css"
+	  rel="stylesheet" type="text/css" />
+    <script src="http://geobrowser.de.dariah.eu/beta5/PLATIN/lib/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="http://geobrowser.de.dariah.eu/beta5/PLATIN/platin-min.js" type="text/javascript"></script>
     
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-    <link rel="shortcut icon" type="image/png" href="./resources/img/page_icon.png" />
+    <link rel="shortcut icon" type="image/png"
+	  href="./resources/img/page_icon.png" />
   </head>
-
+  
   <body>
     <div class="navbar navbar-inverse navbar-static-top navbar-dariah" id="top">
       <div class="navbar-inner">
-	<div class="container-fluid">
-	  <div class="row-fluid">
-	    <div class="span12>">
-
-	      <div class="nav-collapse collapse">
-		<ul class="nav pull-right">
-		  <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-                      Actions
-                      <b class="caret"></b>
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12>">
+              <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1"> Actions <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                       <li><a href="">New datasheet</a></li>
                       <li><a href="#" id="downloadMenuAction">Download CSV</a></li>
-		      <li><a href="#" id="saveMenuAction">Save</a></li>
-		      <li><a href="#" id="bookmarkMenuAction">Bookmark</a></li>
-		      <li class="divider"></li>
-		      <li>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="autosave" id="autosave" checked="checked" autocomplete="off"> Autosave</li>
-		    </ul>
-		  </li>
-
-		  <li>
-		    <a href="./login" ><i class="icon-signin icon-white"></i> Login</a>
-		  </li>
-		  </li>	
-		</ul>
-
-		<ul class="nav">
-		  <li class="dropdown">
-		    <a class="brand dropdown-toggle" data-toggle="dropdown" href="#">
-		      <span class="caret"></span>
-		      DARIAH-DE Datasheet Editor
-		    </a>
-		    <ul class="dropdown-menu">
-		      <li><a href="./geobrowser.html">Geo-Browser</a></li>
-		      <li><a href="https://de.dariah.eu">DARIAH-DE Portal</a></li>
-		    </ul>
-		  </li>
-		  <li><a href="./geobrowser.html">Geo-Browser</a></li>
-		</ul>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-      </div>
-    </div>
-
-    <div id="content_layout" class="container-fluid">
-      <div style="height:25px;"></div>
-      <div class="row-fluid">
-		
-	<div class="span9 main-content-wrapper no-margin">
-	  <div id="content" class="primary-area">
-	    <ul class="breadcrumb">
-	      <li>
-		<img src="./resources/img/dariah_logo.png" width="125"/>
-	      </li>
-	    </ul>
-	    
-	    <div id="contentInner">
-
-	      <!--
-		  <div id="sheetArea">
-		    <div id="console" class="console"></div>
-		    <div id="dataTable" class="dataTable"></div>
-		  </div>
-		  -->
-	      
-	      <h1>Choose or create data</h1>
-	      <p>You have no dataset selected. Choose one of the actions, either <b>create an empty worksheet</b> or import existing CSV data <b>from your harddisk</b>.
-                Creating a new sheet will allow e.g. for copy'n'paste from Excel or Calc. Your data will be saved to the DARIAH storage.</p>
-	      <br/>
-	      <dl>
-                <p><button class="btn btn-primary btn-small" onclick="createNew();">Create an empty worksheet</button> &nbsp; or import local file: &nbsp; <input class="btn-small btn-primary" type="file" id="files" name="files[]" multiple /></p>
-	      </dl>
-            </div>
-	  </div>
-	  
-<!--
-	  <div class="row-fluid">
-            <div id="tgnArea" class="well span4" >
-              <h3>Place selection</h3>
-              <p>The coordinates automatically added are for the most probable place, you may adjust the places below. <i class="icon-pencil"></i> sets all places with this name to the choosen coordinates. <i class="icon-eye-open"></i> lets you lookup and finetune the coordinates or set unrecognized places.</p>
-              <div id="tgnList"></div>
-            </div>
-	    
-            <div id="osmArea" class="well span5">
-              <h3>Map selection</h3>
-              <div class="input-prepend">
-                <span class="add-on">Latitude</span>
-                <input id="osmLat" type="text" class="form-control input-small">
-                <span class="add-on">Longitude</span>
-                <input id="osmLong" type="text" class="input-small">
+                      <li><a href="#" id="saveMenuAction">Save</a></li>
+                      <li><a href="#" id="bookmarkMenuAction">Bookmark</a></li>
+                      <li class="divider"></li>
+                      <li>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="autosave" id="autosave" checked="checked" autocomplete="off" /> Autosave</li>
+                    </ul>
+                  </li>
+		  
+                  <li>
+                    <a href="./login"><i class="icon-signin icon-white"></i> Login</a>
+                  </li>
+                </ul>
+                <ul class="nav">
+                  <li class="dropdown">
+                    <a class="brand dropdown-toggle" data-toggle="dropdown"
+                       href="#">
+                      <span class="caret"></span> DARIAH-DE Datasheet Editor </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="./geobrowser.html">Geo-Browser</a></li>
+                      <li><a href="https://de.dariah.eu">DARIAH-DE Portal</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="./geobrowser.html">Geo-Browser</a></li>
+                </ul>
               </div>
-	      
-              <div class="input-prepend input-append">
-                <span class="add-on">Set for all places named</span>
-                <input id="osmPlaceName" type="text" class="input-medium">
-                <button class="btn" id="setAllOSM" onClick="setAllPlacesOSM()"><i class="icon-pencil"></i></button>
-              </div>
-	      
-              <div id="osmMap"></div>
-	      
-              <br/>
-	      
-              <div class="input-append input-prepend">
-                <input type="text" class="input-medium" id="osmTgnSearch">
-                <button title="search Getty Thesaurus" class="btn" onclick="tgnSearch();"><i class="icon-search"></i> TGN</button>
-                <button title="search Open Geonames" class="btn" onclick="ognSearch();"><i class="icon-search"></i> OGN</button>
-                <button title="search Open Streetmap" class="btn" onclick="osmSearch();"><i class="icon-search"></i> OSM</button>
-              </div>
-              
-              <div id="tgnOsmList"></div>
             </div>
-          </div>
--->
-	</div>
-		
-	<div class="span3">
-	  <div class="primary-area main-content-wrapper">
-            <h4>Add geocoordinates</h4>
-            <p>Geocoordinates for places could be added with the help of the DARIAH Getty Thesaurus Service.</p>
-            <button class="btn-small btn-primary" onClick="startTGN();">Geolocation completion</button>
-          </div>
-	  
-          <br/>
-	  
-	  <div class="primary-area main-content-wrapper">
-            <h4>View raw data</h4>
-            <p>The raw CSV data of this sheet is stored in the DARIAH Storage Service and has the ID <strong id="dataId">not yet set</strong>. You could view the raw data <a id="dataLoc" target="_blank" href="#">here.</a></p>
-          </div>
-	  
-	  <br/>
-	  
-          <div class="primary-area main-content-wrapper">
-            <h4>Open with Geo-Browser</h4>
-            <p>The datasheet will be checked for errors and completeness and could be viewed with the DARIAH Geo-Browser.</p>
-            <button class="btn-small btn-primary" onclick="openGeoBrowser(true);">Open Geo-Browser with this sheet</button>
           </div>
         </div>
       </div>
-
+    </div>
+    <div id="content_layout" class="container-fluid">
+      <div style="height:25px;"></div>
       <div class="row-fluid">
-	<div class="span12 no-margin footer">
-	  <span>&copy;2015 DARIAH-DE</span>
-	  <ul class="pull-right inline">
-	    <li><a href="#">Impressum</a></li>
-	    <li><a href="#">Kontakt</a></li>
-	  </ul>
-	</div>
+        <div class="span9 main-content-wrapper">
+          <div id="content" class="primary-area">
+            <ul class="breadcrumb">
+              <li>
+                <img src="./resources/img/dariah_logo.png" width="125" alt="DARIAH-DE Logo" />
+              </li>
+            </ul>
+            <div id="contentInner">
+              <!--
+              <div id="sheetArea">
+                <div id="console" class="console"></div>
+                <div id="dataTable" class="dataTable"></div>
+              </div>
+              -->
+              <h1>Choose or create data</h1>
+              <p>You have no dataset selected. Choose one of the actions,
+                either <b>create an empty worksheet</b> or import existing
+                CSV data <b>from your harddisk</b>. Creating a new sheet
+                will allow e.g. for copy'n'paste from Excel or Calc. Your
+                data will be saved to the DARIAH storage.</p>
+              <br />
+              <p><button class="btn btn-primary btn-small"
+                  onclick="createNew();">Create an empty worksheet</button>
+                &nbsp; or import local file: &nbsp; <input
+                  class="btn-small btn-primary" type="file" id="files"
+                  name="files[]" /></p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div id="content" class="primary-area">
+              <div id="tgnArea" class="well span5">
+                <h3>Place selection</h3>
+                <p>The coordinates automatically added are for the most
+                  probable place, you may adjust the places below. <i
+                    class="icon-pencil"></i> sets all places with this name
+                  to the choosen coordinates. <i class="icon-eye-open"></i>
+                  lets you lookup and finetune the coordinates or set
+                  unrecognized places.</p>
+                <div id="tgnList"></div>
+              </div>
+              <div id="osmArea" class="well span7">
+                <h3>Map selection</h3>
+                <div class="input-prepend">
+                  <span class="add-on">Latitude</span>
+                  <input id="osmLat" type="text"
+                    class="form-control input-small" />
+                  <span class="add-on">Longitude</span>
+                  <input id="osmLong" type="text" class="input-small" />
+                </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on">Set for all places named</span>
+                  <input id="osmPlaceName" type="text" class="input-medium" />
+                  <button class="btn" id="setAllOSM"
+                    onClick="setAllPlacesOSM()"><i class="icon-pencil"
+                    ></i></button>
+                </div>
+                <div id="osmMap"></div>
+                <br />
+                <div class="input-append input-prepend">
+                  <input type="text" class="input-medium" id="osmTgnSearch" />
+                  <button title="search Getty Thesaurus" class="btn"
+                    onclick="tgnSearch();"><i class="icon-search"></i>
+                    TGN</button>
+                  <button title="search Open Geonames" class="btn"
+                    onclick="ognSearch();"><i class="icon-search"></i>
+                    OGN</button>
+                  <button title="search Open Streetmap" class="btn"
+                    onclick="osmSearch();"><i class="icon-search"></i>
+                    OSM</button>
+                </div>
+                <div id="tgnOsmList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="span3">
+          <div class="primary-area main-content-wrapper">
+            <h4>Add geocoordinates</h4>
+            <p>Geocoordinates for places could be added with the help of
+              the DARIAH Getty Thesaurus Service.</p>
+            <button class="btn-small btn-primary" onClick="startTGN();"
+              >Geolocation completion</button>
+          </div>
+          <br />
+          <div class="primary-area main-content-wrapper">
+            <h4>View raw data</h4>
+            <p>The raw CSV data of this sheet is stored in the DARIAH
+              Storage Service and has the ID <strong id="dataId">not yet
+                set</strong>. You could view the raw data <a id="dataLoc"
+                target="_blank" href="#">here.</a></p>
+          </div>
+          <br />
+          <div class="primary-area main-content-wrapper">
+            <h4>Open with Geo-Browser</h4>
+            <p>The datasheet will be checked for errors and completeness
+              and could be viewed with the DARIAH Geo-Browser.</p>
+            <button class="btn-small btn-primary"
+              onclick="openGeoBrowser(true);">Open Geo-Browser with this
+              sheet</button>
+          </div>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12 no-margin footer">
+          <span>&copy;2015 DARIAH-DE</span>
+          <ul class="pull-right inline">
+            <li><a href="#">Impressum</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-    
     <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-
-		  color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled in order for this application to display correctly.
-      </div>
+      <div
+        style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-
+		  color: white; border: 1px solid red; padding: 4px; font-family: sans-serif"
+        > Your web browser must have JavaScript enabled in order for this
+        application to display correctly. </div>
     </noscript>
-    
-</body>
+  </body>
 </html>

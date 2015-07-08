@@ -1,0 +1,32 @@
+.form-element {
+  width: 30%;
+  padding: 8px 7px;  
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.form-field {
+  color: #3d4365;
+  border: 1px solid #B7B7B7;
+}
+.form-field-focus {
+  color: #333333;
+  border-color: #333;
+}
+.form-button {
+  background: #707294;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  color: #ffffff;
+  cursor: pointer;
+}
+.form-button:hover {
+  background: #3d4365;
+}
+.form-error {
+  padding: 0;
+  font-size: 14px;
+  color: #B61601;
+}
